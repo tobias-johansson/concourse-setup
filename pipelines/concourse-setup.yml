@@ -11,18 +11,4 @@ jobs:
   - get: concourse-setup
     trigger: true
   - task: fly
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source:
-          repository: timmow/fly-docker
-      inputs:
-      - name: concourse-setup
-      run:
-        path: sh
-        args:
-          - -exc
-          - |
-            ls -alh
-            fly --help
+    file: concourse-setup/tasks/add-pipelines.yml
