@@ -1,0 +1,28 @@
+resources:
+- name: concourse-setup
+  type: git
+  source:
+    uri: https://github.com/tobias-johansson/concourse-setup
+    branch: master
+
+jobs:
+- name: add all
+  plan:
+  - get: concourse-setup
+    trigger: true
+  - task: fly
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: timmow/fly-docker
+      inputs:
+      - name: concourse-setup
+      run:
+        path: sh
+        args:
+          - -exc
+          - |
+            ls -alh
+            fly --help

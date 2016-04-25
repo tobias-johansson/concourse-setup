@@ -1,0 +1,14 @@
+resources:
+- name: maven-hello-world
+  type: git
+  source:
+    uri: https://github.com/tobias-johansson/maven-hello-world
+    branch: master
+
+jobs:
+- name: maven-hello-world test
+  plan:
+  - get: maven-hello-world
+    trigger: true
+  - task: test
+    file: maven-hello-world/ci/build.yml
