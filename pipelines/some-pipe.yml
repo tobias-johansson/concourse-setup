@@ -6,7 +6,7 @@ resources:
     branch: master
 
 jobs:
-- name: maven-hello-world test
+- name: build
   plan:
   - get: maven-hello-world
     trigger: true
