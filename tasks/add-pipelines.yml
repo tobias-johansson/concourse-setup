@@ -6,10 +6,4 @@ image_resource:
 inputs:
 - name: concourse-setup
 run:
-  path: sh
-  args:
-    - -exc
-    - |
-      ls -alh
-      fly -t ci login -c http://192.168.100.4:8080/
-      fly -t ci builds
+  path: concourse-setup/tasks/add-pipelines.sh
