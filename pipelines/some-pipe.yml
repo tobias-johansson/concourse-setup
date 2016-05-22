@@ -5,10 +5,31 @@ resources:
     uri: https://github.com/tobias-johansson/maven-hello-world
     branch: master
 
+- name: flight-school
+  type: git
+  source:
+    uri: https://github.com/tobias-johansson/flight-school
+    branch: master
+
 jobs:
-- name: build
+- name: build A
   plan:
   - get: maven-hello-world
     trigger: true
   - task: test
     file: maven-hello-world/ci/build.yml
+
+- name: build B
+  plan:
+  - get: flight-school
+    trigger: true
+  - task: test
+    file: flight-school/build.yml
+
+- name: integration
+  plan:
+
+  # - get: maven-hello-world
+  #   passed: [build A]
+  # - get: flight-school
+  #   passed: [build B]

@@ -1,3 +1,0 @@
-pipelines:
-- name: some-pipe
-  config_file: concourse-setup/pipelines/some-pipe.yml
